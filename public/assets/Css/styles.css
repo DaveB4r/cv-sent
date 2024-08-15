@@ -22,3 +22,13 @@
   font-weight: 700;
   font-style: normal;
 }
+.logo {
+  width: 50px;
+}
+
+.nav-home:hover::after {
+  content: " Home";
+}
+.nav-job:hover::after {
+  content: " Job Oportunities";
+}

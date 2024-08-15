@@ -11,11 +11,9 @@ class HomeController extends Controller
   {
     session_start();
     if (empty($_SESSION)) header("Location: /signin");
-    $journals = [
-      new Journal('My Third Journal Entry', '2023'),
-      new Journal('My Second Journal Entry', '2022'),
-      new Journal('My First Journal Entry', '2021'),
-    ];
-    $this->render('index', ['journals' => $journals]);
+    $this->render('layout/header');
+    $this->render('layout/navbar');
+    $this->render('index');
+    $this->render('layout/footer');
   }
 }
