@@ -2,7 +2,7 @@ CREATE DATABASE cv_sent
 DEFAULT CHARACTER SET = 'utf8mb4';
 
 use cv_sent;
-L
+
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(255),
