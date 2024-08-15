@@ -7,7 +7,7 @@ class User
   private $conn;
   private $table_name = "users";
 
-  public $id, $username, $email, $password, $created_at;
+  public $id, $username, $email, $password, $created_at, $newPass;
 
   public function __construct($db)
   {
@@ -64,7 +64,22 @@ class User
     $stmt->bindParam(":password", $this->password);
     $stmt->bindParam(":id", $this->id);
 
-    if($stmt->execute) return true;
+    if($stmt->execute()) return true;
+    return false;
+  }
+
+  public function updatePassword()
+  {
+    $query = "UPDATE {$this->table_name} set password = :password WHERE id = :id";
+    $stmt = $this->conn->prepare($query);
+
+    $this->password = password_hash($this->password, PASSWORD_DEFAULT);
+    $this->id = htmlspecialchars(strip_tags($this->id));
+
+    $stmt->bindParam(":password", $this->password);
+    $stmt->bindParam(":id", $this->id);
+    
+    if($stmt->execute()) return true;
     return false;
   }
 

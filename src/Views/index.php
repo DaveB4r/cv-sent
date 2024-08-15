@@ -11,41 +11,32 @@ $dataPoints = array(
 );
 
 ?>
-<!DOCTYPE HTML>
-<html>
+<script>
+  window.onload = function() {
+    CanvasJS.addColorSet("red",
+      [
+        "red"
+      ]);
+    var chart = new CanvasJS.Chart("chartContainer", {
+      title: {
+        text: "Push-ups Over a Week"
+      },
+      axisY: {
+        title: "Number of Push-ups"
+      },
+      data: [{
+        type: "line",
+        dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+      }],
+      backgroundColor: "#242729",
+      colorSet: "red",
+    });
+    chart.render();
 
-<head>
-  <script>
-    window.onload = function() {
-      CanvasJS.addColorSet("red",
-        [ 
-          "red"
-        ]);
-      var chart = new CanvasJS.Chart("chartContainer", {
-        title: {
-          text: "Push-ups Over a Week"
-        },
-        axisY: {
-          title: "Number of Push-ups"
-        },
-        data: [{
-          type: "line",
-          dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
-        }],
-        backgroundColor: "#242729",
-        colorSet: "red",
-      });
-      chart.render();
-
-    }
-  </script>
-</head>
+  }
+</script>
 
 <body>
   <div class="d-flex justify-content-center align-items-center container mt-4">
     <div id="chartContainer" style="height: 370px; width: 50%;"></div>
   </div>
-
-</body>
-
-</html>

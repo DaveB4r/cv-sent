@@ -40,6 +40,36 @@ class UserController extends Controller
     $this->render("layout/footer");
   }
 
+  public function profile()
+  {
+    session_start();
+    if(empty($_SESSION)) header("Location: /signin");
+    $this->render("layout/header");
+    $this->render("layout/navbar");
+    $this->render("User/profile");
+    $this->render("layout/footer");
+  }
+
+  public function changePassword()
+  {
+    session_start();
+    $message = "error";
+    $this->user->email = $_SESSION["email"];
+    $stmt = $this->user->selectOne();
+    if($stmt->rowCount() > 0) {
+      while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        if(password_verify($_POST["current_password"], $row["password"])) {
+          $this->user->password = $_POST["new_password"];
+          $this->user->id = $_SESSION["id"];
+          $this->user->updatePassword();
+          $message = "success";
+        }
+      }
+    }
+    $_SESSION["message"] = $message;
+    return header("Location: /profile");
+  }
+
   public function login()
   {
     $this->user->email = $_POST["email"];

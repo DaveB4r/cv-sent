@@ -27,7 +27,7 @@
             <?= $_SESSION['username'] ?>
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
+            <li><a class="dropdown-item" href="/profile"><i class="fa fa-user" aria-hidden="true"></i> Profile</a></li>
             <li>
               <hr class="dropdown-divider">
             </li>

@@ -30,5 +30,5 @@
   content: " Home";
 }
 .nav-job:hover::after {
-  content: " Job Oportunities";
+  content: " Jobs Applied";
 }
