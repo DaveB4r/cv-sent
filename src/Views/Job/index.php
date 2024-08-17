@@ -10,9 +10,9 @@
       <div class="d-flex justify-content-between align-items-center p-0">
         <h3 class="ubuntu-bold">Jobs Hunting</h3>
         <div class="">
-          <a href="#" class="btn btn-outline-info">New Job</a>
-          <a href="#" class="btn btn-outline-info">New Platform</a>
-          <a href="#" class="btn btn-outline-info">New Stack</a>
+          <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#createJobModal" >New Job</button>
+          <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#createPlatformModal" >New Platform</button>
+          <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#createStackModal" >New Stack</button>
         </div>
       </div>
     </div>

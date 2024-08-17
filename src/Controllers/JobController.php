@@ -24,6 +24,9 @@ class JobController extends Controller
     $this->render("layout/header");
     $this->render("layout/navbar");
     $this->render("Job/index");
+    $this->render("Job/Modals/createJob");
+    $this->render("Job/Modals/createPlatform");
+    $this->render("Job/Modals/createStack");
     $this->render("layout/footer");
   }
 
