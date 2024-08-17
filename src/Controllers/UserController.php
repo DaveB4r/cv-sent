@@ -11,9 +11,9 @@ class UserController extends Controller
 {
   private $db, $user;
 
-  public function __construct() {
-    $database = new Database();
-    $this->db = $database->getConnection();
+  public function __construct()
+  {
+    $this->db = Database::getConnection();
     $this->user = new User($this->db);
   }
 
@@ -22,12 +22,14 @@ class UserController extends Controller
     $this->user->username = $_POST["username"];
     $this->user->email = $_POST["email"];
     $this->user->password = $_POST["password"];
-    if($this->user->insert()) header("Location: /sigin");
+    if ($this->user->insert()) header("Location: /sigin");
     else return false;
   }
 
   public function signUp()
   {
+    session_start();
+    if (!empty($_SESSION)) header("Location: /");
     $this->render("layout/header");
     $this->render("User/signUp");
     $this->render("layout/footer");
@@ -35,6 +37,8 @@ class UserController extends Controller
 
   public function signIn()
   {
+    session_start();
+    if (!empty($_SESSION)) header("Location: /");
     $this->render("layout/header");
     $this->render("User/signIn");
     $this->render("layout/footer");
@@ -43,7 +47,7 @@ class UserController extends Controller
   public function profile()
   {
     session_start();
-    if(empty($_SESSION)) header("Location: /signin");
+    if (empty($_SESSION)) header("Location: /signin");
     $this->render("layout/header");
     $this->render("layout/navbar");
     $this->render("User/profile");
@@ -56,9 +60,9 @@ class UserController extends Controller
     $message = "error";
     $this->user->email = $_SESSION["email"];
     $stmt = $this->user->selectOne();
-    if($stmt->rowCount() > 0) {
-      while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        if(password_verify($_POST["current_password"], $row["password"])) {
+    if ($stmt->rowCount() > 0) {
+      while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        if (password_verify($_POST["current_password"], $row["password"])) {
           $this->user->password = $_POST["new_password"];
           $this->user->id = $_SESSION["id"];
           $this->user->updatePassword();
@@ -74,15 +78,15 @@ class UserController extends Controller
   {
     $this->user->email = $_POST["email"];
     $stmt = $this->user->selectOne();
-    if($stmt->rowCount() > 0) {
-      while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        if(password_verify($_POST["password"], $row["password"])) {
+    if ($stmt->rowCount() > 0) {
+      while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        if (password_verify($_POST["password"], $row["password"])) {
           session_start();
           $_SESSION["username"] = $row["username"];
           $_SESSION["email"] = $row["email"];
           $_SESSION["id"] = $row["id"];
           return header("Location: /");
-        }else{
+        } else {
           echo "Access Denied";
           return false;
         }

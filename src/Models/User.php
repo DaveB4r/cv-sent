@@ -11,7 +11,7 @@ class User
 
   public function __construct($db)
   {
-    $this->conn = $db;
+    $this->conn = $db->conn;
   }
 
   public function insert()
@@ -64,7 +64,7 @@ class User
     $stmt->bindParam(":password", $this->password);
     $stmt->bindParam(":id", $this->id);
 
-    if($stmt->execute()) return true;
+    if ($stmt->execute()) return true;
     return false;
   }
 
@@ -78,8 +78,8 @@ class User
 
     $stmt->bindParam(":password", $this->password);
     $stmt->bindParam(":id", $this->id);
-    
-    if($stmt->execute()) return true;
+
+    if ($stmt->execute()) return true;
     return false;
   }
 
@@ -92,7 +92,7 @@ class User
 
     $stmt->bindParam(1, $this->id);
 
-    if($stmt->execute()) return true;
+    if ($stmt->execute()) return true;
     return false;
   }
 }

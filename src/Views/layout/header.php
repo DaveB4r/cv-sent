@@ -13,6 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/Css/styles.css">
   <link rel="shortcut icon" href="/assets/Images/icon.png" type="image/x-icon">
-  <script type="module" src="/assets/Js/app.js"></script>
+  
 </head>
-</head>
+<body>
+<main>

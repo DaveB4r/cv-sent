@@ -30,5 +30,12 @@
   content: " Home";
 }
 .nav-job:hover::after {
-  content: " Jobs Applied";
+  content: " Jobs";
+}
+
+.dark-css {
+  background-color: #0b0f12;
+}
+.light-css{
+  background-color: #ededed;
 }
