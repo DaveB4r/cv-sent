@@ -10,7 +10,7 @@ class Job
 
   public function __construct($db)
   {
-    $this->conn = $db;
+    $this->conn = $db->conn;
   }
 
   public function insert()

@@ -1,5 +1,3 @@
-//fa-regular fa-moon
-//
 export default function changeTheme(theme) {
   const body = document.body;
   const main = document.querySelector('main');

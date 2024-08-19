@@ -10,7 +10,7 @@
       <div class="d-flex justify-content-between align-items-center p-0">
         <h3 class="ubuntu-bold">Jobs Hunting</h3>
         <div class="">
-          <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#createJobModal" >New Job</button>
+          <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#createJobModal"  <?= $canAddJob ?>>New Job</button>
           <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#createPlatformModal" >New Platform</button>
           <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#createStackModal" >New Stack</button>
         </div>

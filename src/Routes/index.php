@@ -3,6 +3,7 @@
 use App\Router;
 use App\Controllers\HomeController;
 use App\Controllers\JobController;
+use App\Controllers\PlatformController;
 use App\Controllers\UserController;
 
 $router = new Router();
@@ -20,5 +21,8 @@ $router->post('/change-pass', UserController::class, 'changePassword');
 
 # Job
 $router->get('/job', JobController::class, 'index');
+
+# Platform
+$router->post('/insert-platform', PlatformController::class, 'insert');
 
 $router->dispatch();
