@@ -16,8 +16,8 @@ if (themeBtn) {
     changeTheme(localStorage.getItem("theme"));
   });
 
-  changeTheme(theme);
 }
+changeTheme(theme);
 
 // Platforms
 const createPlatformForm = document.getElementById('create_platform');

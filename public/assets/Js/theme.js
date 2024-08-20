@@ -28,7 +28,7 @@ export default function changeTheme(theme) {
   const textTags = [...ps, ...icons, ...inputs, ...as, ...h1s, ...h2s, ...h3s, ...h4s, ...h5s, ...h6s, ...ths, ...tds, ...labels, ...spans];
 
   if (theme == 'dark') { // dark
-    icon.className = 'fa-regular fa-moon';
+    if (icon) icon.className = 'fa-regular fa-moon';
     textTags.forEach(icon => {
       icon.classList.add('text-white');
     });
@@ -39,18 +39,19 @@ export default function changeTheme(theme) {
         tag.style.borderColor = "#fff"
       }
     });
-
-    nav.classList.add("dark-css");
-    nav.classList.remove("light-css");
-    navItems.forEach(navItem => {
-      navItem.classList.add("dark-css");
-      navItem.classList.remove("light-css");
-      navItem.classList.remove("bg-dark");
-      navItem.classList.remove("bg-light");
-    })
+    if (nav) {
+      nav.classList.add("dark-css");
+      nav.classList.remove("light-css");
+      navItems.forEach(navItem => {
+        navItem.classList.add("dark-css");
+        navItem.classList.remove("light-css");
+        navItem.classList.remove("bg-dark");
+        navItem.classList.remove("bg-light");
+      })
+    }
 
   } else { // light
-    icon.className = 'fa-regular fa-sun';
+    if (icon) icon.className = 'fa-regular fa-sun';
     textTags.forEach(icon => {
       icon.classList.remove('text-white');
     });
@@ -61,14 +62,16 @@ export default function changeTheme(theme) {
         tag.style.borderColor = "#c7c7c7"
       }
     });
-    nav.classList.add("light-css");
-    nav.classList.remove("dark-css");
-    navItems.forEach(navItem => {
-      navItem.classList.add("light-css");
-      navItem.classList.remove("dark-css");
-      navItem.classList.remove("bg-dark");
-      navItem.classList.remove("bg-light");
-    })
+    if (nav) {
+      nav.classList.add("light-css");
+      nav.classList.remove("dark-css");
+      navItems.forEach(navItem => {
+        navItem.classList.add("light-css");
+        navItem.classList.remove("dark-css");
+        navItem.classList.remove("bg-dark");
+        navItem.classList.remove("bg-light");
+      })
+    }
   }
 
 }

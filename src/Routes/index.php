@@ -23,6 +23,7 @@ $router->post('/change-pass', UserController::class, 'changePassword');
 $router->get('/job', JobController::class, 'index');
 
 # Platform
+$router->get('/platforms', PlatformController::class, 'index');
 $router->post('/insert-platform', PlatformController::class, 'insert');
 
 $router->dispatch();

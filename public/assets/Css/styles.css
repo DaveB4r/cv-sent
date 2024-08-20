@@ -7,6 +7,11 @@
     sans-serif;
 }
 
+body {
+  scrollbar-width: thin;
+  scrollbar-color: #0b0f12;
+}
+
 .ubuntu-ligth {
   font-family: "Ubuntu", system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
@@ -22,6 +27,7 @@
   font-weight: 700;
   font-style: normal;
 }
+
 .logo {
   width: 50px;
 }
@@ -29,6 +35,7 @@
 .nav-home:hover::after {
   content: " Home";
 }
+
 .nav-job:hover::after {
   content: " Jobs";
 }
@@ -36,6 +43,29 @@
 .dark-css {
   background-color: #0b0f12;
 }
-.light-css{
+
+.light-css {
   background-color: #ededed;
+}
+
+iframe {
+  border: none;
+}
+
+/* Inside the iframe's content */
+::-webkit-scrollbar {
+  width: 1px;
+  height: 1px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0b0f12; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2c2b2b; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1a1919; 
 }
