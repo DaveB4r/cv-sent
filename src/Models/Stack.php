@@ -6,7 +6,7 @@ class Stack
 {
   private $conn;
   private $table_name = "stacks";
-  public $id, $name;
+  public $id, $name, $lastId;
 
   public function __construct($db)
   {
@@ -22,7 +22,10 @@ class Stack
 
     $stmt->bindParam(":name", $this->name);
 
-    if($stmt->execute()) return true;
+    if($stmt->execute()){
+      $this->lastId = $this->conn->lastInsertId();
+      return true;
+    }
     return false;
   }
 

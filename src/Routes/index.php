@@ -4,6 +4,7 @@ use App\Router;
 use App\Controllers\HomeController;
 use App\Controllers\JobController;
 use App\Controllers\PlatformController;
+use App\Controllers\StackController;
 use App\Controllers\UserController;
 
 $router = new Router();
@@ -25,5 +26,9 @@ $router->get('/job', JobController::class, 'index');
 # Platform
 $router->get('/platforms', PlatformController::class, 'index');
 $router->post('/insert-platform', PlatformController::class, 'insert');
+
+# Stack
+$router->get('/stacks', StackController::class, 'index');
+$router->post('/insert-stack', StackController::class, 'insert');
 
 $router->dispatch();

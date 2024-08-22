@@ -20,8 +20,8 @@
           </div>
         </form>
         <div class="container">
-          <div id="platform-message" class="alert alert-success alert-dismissible fade d-none" role="alert">
-            <strong id="platform-text"></strong>
+          <div id="div-message-platform" class="alert alert-success alert-dismissible fade d-none" role="alert">
+            <strong id="div-text-platform"></strong>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
           <iframe id="iframe-platforms" src="/platforms" frameborder="0" class="w-100"></iframe>

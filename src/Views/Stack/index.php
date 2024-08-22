@@ -1,5 +1,5 @@
-<h1 class="ubuntu-bold">Platforms</h1>
-<?php if ($platforms->rowCount() > 0) : ?>
+<h1 class="ubuntu-bold">Stacks</h1>
+<?php if ($stacks->rowCount() > 0) : ?>
   <table class="table table-stripped table-bordered w-100">
     <thead>
       <tr>
@@ -9,10 +9,10 @@
       </tr>
     </thead>
     <tbody>
-      <?php foreach ($platforms->fetchAll(PDO::FETCH_ASSOC) as $platform): ?>
+      <?php foreach ($stacks->fetchAll(PDO::FETCH_ASSOC) as $stack): ?>
         <tr>
-          <td><?= $platform["id"] ?></td>
-          <td><?= $platform["name"] ?></td>
+          <td><?= $stack["id"] ?></td>
+          <td><?= $stack["name"] ?></td>
           <td>
             <button type="button" class="btn btn-outline-info">Edit</button>
             <button type="button" class="btn btn-outline-danger">Delete</button>
@@ -21,6 +21,6 @@
       <?php endforeach ?>
     </tbody>
   </table>
-<?php else: ?>
+<?php else : ?>
   <h5 class="ubuntu-light">No data</h5>
 <?php endif ?>

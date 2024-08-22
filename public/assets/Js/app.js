@@ -1,6 +1,6 @@
 import logout from "./logout.js";
 import changeTheme from "./theme.js";
-import { insertPlatform } from "./platforms.js";
+import { insertData } from "./data.js";
 
 // Logout
 const logoutBtn = document.getElementById('logout');
@@ -24,6 +24,15 @@ const createPlatformForm = document.getElementById('create_platform');
 if (createPlatformForm) {
   createPlatformForm.addEventListener('submit', e => {
     e.preventDefault();
-    insertPlatform(createPlatformForm);
+    insertData(createPlatformForm, '/insert-platform','iframe-platforms','platform');
+  })
+}
+
+// Stacks
+const createStackForm = document.getElementById('create_stack');
+if(createStackForm) {
+  createStackForm.addEventListener('submit', e => {
+    e.preventDefault();
+    insertData(createStackForm, '/insert-stack','iframe-stacks','stack')
   })
 }

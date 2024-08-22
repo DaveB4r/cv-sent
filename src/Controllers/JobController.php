@@ -32,7 +32,6 @@ class JobController extends Controller
     $data = [
       "platforms" => $platforms,
       "stacks" => $stacks,
-
     ];
 
     $this->render("layout/header");
