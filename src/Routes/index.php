@@ -22,6 +22,8 @@ $router->post('/change-pass', UserController::class, 'changePassword');
 
 # Job
 $router->get('/job', JobController::class, 'index');
+$router->get('/jobs-info', JobController::class, 'info');
+$router->post('/insert-job', JobController::class, 'insert');
 
 # Platform
 $router->get('/platforms', PlatformController::class, 'index');

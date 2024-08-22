@@ -14,6 +14,7 @@ export default function changeTheme(theme) {
   const uls = document.querySelectorAll('ul');
   const lis = document.querySelectorAll('li');
   const modals = document.querySelectorAll('.modal-content');
+  const selects = document.querySelectorAll('select');
   const ps = document.querySelectorAll('p');
   const as = document.querySelectorAll('a');
   const h1s = document.querySelectorAll('h1');
@@ -24,8 +25,8 @@ export default function changeTheme(theme) {
   const h6s = document.querySelectorAll('h6');
   const labels = document.querySelectorAll('label');
   const spans = document.querySelectorAll('span');
-  const structureTags = [body, main, ...inputs, ...sections, ...tables, ...ths, ...tds, ...cards, ...uls, ...lis, ...modals];
-  const textTags = [...ps, ...icons, ...inputs, ...as, ...h1s, ...h2s, ...h3s, ...h4s, ...h5s, ...h6s, ...ths, ...tds, ...labels, ...spans];
+  const structureTags = [body, main, ...inputs, ...sections, ...tables, ...ths, ...tds, ...cards, ...uls, ...lis, ...modals, ...selects];
+  const textTags = [...ps, ...icons, ...inputs, ...as, ...h1s, ...h2s, ...h3s, ...h4s, ...h5s, ...h6s, ...ths, ...tds, ...labels, ...spans,...selects];
 
   if (theme == 'dark') { // dark
     if (icon) icon.className = 'fa-regular fa-moon';

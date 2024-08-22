@@ -25,6 +25,7 @@ if (createPlatformForm) {
   createPlatformForm.addEventListener('submit', e => {
     e.preventDefault();
     insertData(createPlatformForm, '/insert-platform','iframe-platforms','platform');
+    createPlatformForm.reset();
   })
 }
 
@@ -33,6 +34,20 @@ const createStackForm = document.getElementById('create_stack');
 if(createStackForm) {
   createStackForm.addEventListener('submit', e => {
     e.preventDefault();
-    insertData(createStackForm, '/insert-stack','iframe-stacks','stack')
+    insertData(createStackForm, '/insert-stack','iframe-stacks','stack');
+    createStackForm.reset();
+  })
+};
+
+// Jobs
+const createJobForm = document.getElementById('create_job');
+if(createJobForm) {
+  createJobForm.addEventListener('submit', e => {
+    e.preventDefault();
+    insertData(createJobForm, '/insert-job', 'iframe-jobs', 'job');
+    createJobForm.reset();
+    document.getElementById('createJobModal').classList.remove('show');
+    document.body.classList.remove('modal-open');
+    document.querySelector('.modal-backdrop').classList.remove('show');
   })
 }

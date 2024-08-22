@@ -28,20 +28,51 @@ class JobController extends Controller
 
     $platforms = $this->platform->selectAll();
     $stacks = $this->stack->selectAll();
+    $jobs = $this->job->selectJoinPlatforms();
     $canAddJob = $platforms->rowCount() === 0 || $stacks->rowCount() === 0 ? 'disabled' : '';
-    $data = [
-      "platforms" => $platforms,
-      "stacks" => $stacks,
-    ];
 
     $this->render("layout/header");
     $this->render("layout/navbar");
-    $this->render("Job/index", ["canAddJob" => $canAddJob]);
-    $this->render("Job/Modals/createJob");
+    $this->render("Job/index", [
+      "canAddJob" => $canAddJob,
+      "jobs" => $jobs
+    ]);
+    $this->render("Job/Modals/createJob", [
+      "platforms" => $platforms,
+      "stacks" => $stacks,
+    ]);
     $this->render("Job/Modals/platformAdmin");
     $this->render("Job/Modals/stackAdmin");
     $this->render("layout/footer");
   }
 
-  public function insert() {}
+  public function info() 
+  {
+    session_start();
+    if (empty($_SESSION)) header("Location: /signin");
+    $jobs = $this->job->selectJoinPlatforms();
+    $this->render("layout/header");
+    $this->render("Job/info", ["jobs" => $jobs]);
+    $this->render("layout/footer");
+  }
+
+  public function insert() 
+  {
+    session_start();
+    $res = [];
+    $this->job->user_id = $_SESSION["id"];
+    $this->job->company = $_POST["company"];
+    $this->job->platform_id = $_POST["platform_id"];
+    $this->job->stage = $_POST["stage"];
+    $this->job->day_applied = $_POST["day_applied"];
+    $this->job->url = $_POST["url"];
+    $this->job->stacks = implode(", ",$_POST["stacks"]);
+    if($this->job->insert()) {
+      array_push($res, [
+        "lastId" => $this->job->lastId,
+        "name" => $_POST["company"]
+      ]);
+    }
+    echo json_encode($res);
+  }
 }
