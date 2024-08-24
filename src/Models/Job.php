@@ -59,9 +59,10 @@ class Job
     return $stmt;
   }
 
-  public function selectJoinPlatforms()
+  public function selectJoinPlatforms($paginator = false, $page = 0,$elements = 5)
   {
     $query = "SELECT company, stage, day_applied, url, stacks, platforms.name AS platform_name FROM {$this->table_name} LEFT JOIN platforms ON {$this->table_name}.platform_id = platforms.id ORDER BY day_applied DESC";
+    if($paginator) $query .= " LIMIT {$page},{$elements}";
     $stmt = $this->conn->prepare($query);
     $stmt->execute();
     return $stmt;

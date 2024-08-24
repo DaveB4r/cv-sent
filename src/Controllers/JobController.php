@@ -11,7 +11,7 @@ use PDO;
 
 class JobController extends Controller
 {
-  private $db, $job, $platform, $stack;
+  private $db, $job, $platform, $stack, $page, $elements, $totalPages;
 
   public function __construct()
   {
@@ -19,6 +19,8 @@ class JobController extends Controller
     $this->job = new Job($this->db);
     $this->platform = new Platform($this->db);
     $this->stack = new Stack($this->db);
+    $this->page = 0;
+    $this->elements = 5;
   }
 
   public function index()
@@ -30,12 +32,13 @@ class JobController extends Controller
     $stacks = $this->stack->selectAll();
     $jobs = $this->job->selectJoinPlatforms();
     $canAddJob = $platforms->rowCount() === 0 || $stacks->rowCount() === 0 ? 'disabled' : '';
-
+    $this->totalPages = ceil($this->job->selectAll()->rowCount() / $this->elements);
     $this->render("layout/header");
     $this->render("layout/navbar");
     $this->render("Job/index", [
       "canAddJob" => $canAddJob,
-      "jobs" => $jobs
+      "jobs" => $jobs,
+      "totalPages" => $this->totalPages
     ]);
     $this->render("Job/Modals/createJob", [
       "platforms" => $platforms,
@@ -46,17 +49,29 @@ class JobController extends Controller
     $this->render("layout/footer");
   }
 
-  public function info() 
+  // public function paginate()
+  // {
+  //   // session_start();
+  //   // if (empty($_SESSION)) header("Location: /signin");
+  //   $currentPage = isset($_GET["page"]) ? $_GET["page"] : 1;
+  //   $this->page = ($currentPage - 1) * $this->elements;
+  //   echo json_encode($currentPage);
+  // }
+
+  public function info()
   {
     session_start();
     if (empty($_SESSION)) header("Location: /signin");
-    $jobs = $this->job->selectJoinPlatforms();
+    if (isset($_GET["page"])) {
+      $this->page = ($_GET["page"] - 1) * $this->elements;
+    }
+    $jobs = $this->job->selectJoinPlatforms(true, $this->page, $this->elements);
     $this->render("layout/header");
     $this->render("Job/info", ["jobs" => $jobs]);
     $this->render("layout/footer");
   }
 
-  public function insert() 
+  public function insert()
   {
     session_start();
     $res = [];
@@ -66,8 +81,8 @@ class JobController extends Controller
     $this->job->stage = $_POST["stage"];
     $this->job->day_applied = $_POST["day_applied"];
     $this->job->url = $_POST["url"];
-    $this->job->stacks = implode(", ",$_POST["stacks"]);
-    if($this->job->insert()) {
+    $this->job->stacks = implode(", ", $_POST["stacks"]);
+    if ($this->job->insert()) {
       array_push($res, [
         "lastId" => $this->job->lastId,
         "name" => $_POST["company"]

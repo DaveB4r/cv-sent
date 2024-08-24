@@ -21,7 +21,24 @@
         <strong id="div-text-job"></strong>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
-      <iframe id="iframe-jobs" src="/jobs-info" frameborder="0" class="w-100" style="height: 400px;"></iframe>
+      <iframe id="iframe-jobs" frameborder="0" class="w-100" style="height: 300px;"></iframe>
+      <nav aria-label="Page navigation">
+        <ul class="pagination">
+          <li class="page-item">
+            <button class="page-link paginator" id="previous-page" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </button>
+          </li>
+          <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
+            <li class="page-item"><button class="page-link paginator" id="<?= $i ?>"><?= $i ?></button></li>
+          <?php endfor ?>
+          <li class="page-item">
+            <button class="page-link paginator" id="next-page" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
 </div>

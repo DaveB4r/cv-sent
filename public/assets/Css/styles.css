@@ -69,3 +69,7 @@ iframe {
 ::-webkit-scrollbar-thumb:hover {
   background: #1a1919; 
 }
+
+.page-active {
+  background-color: #0d6efd !important;
+}
