@@ -64,7 +64,6 @@ const nextPage = document.getElementById('next-page');
 paginator(currentPage)
 paginatorbtns.forEach(btn => {
   btn.addEventListener('click', () => {
-    previousPage.disabled = currentPage === 1;
     if (btn.id === 'previous-page') {
       currentPage--
     } else if (btn.id === 'next-page') {
