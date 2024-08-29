@@ -73,3 +73,12 @@ iframe {
 .page-active {
   background-color: #0d6efd !important;
 }
+.th-job {
+  cursor: pointer;
+  width: 16.66%;
+}
+.td-job {
+  width: 16.66%;
+  max-height: 28px;
+  font-size: .8rem;
+}

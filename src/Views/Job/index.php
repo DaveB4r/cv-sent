@@ -21,7 +21,19 @@
         <strong id="div-text-job"></strong>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
-      <iframe id="iframe-jobs" frameborder="0" class="w-100" style="height: 300px;"></iframe>
+      <table class="table table-stripped table-bordered">
+        <thead>
+          <tr>
+            <th id="company" class="th-job">Company <i></i></th>
+            <th id="platform_name" class="th-job">Platform <i></i></th>
+            <th id="stage" class="th-job">Stage <i></i></th>
+            <th id="day_applied" class="th-job">Day <i></i></th>
+            <th id="stacks" class="th-job">Stack <i></i></th>
+            <th>Actions <i></i></th>
+          </tr>
+        </thead>
+      </table>
+        <iframe id="iframe-jobs" frameborder="0" class="w-100" style="height: 300px;"></iframe>
       <nav aria-label="Page navigation">
         <ul class="pagination">
           <li class="page-item">

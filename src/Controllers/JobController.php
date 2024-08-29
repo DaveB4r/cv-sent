@@ -11,7 +11,7 @@ use PDO;
 
 class JobController extends Controller
 {
-  private $db, $job, $platform, $stack, $page, $elements, $totalPages;
+  private $db, $job, $platform, $stack, $page, $elements, $totalPages, $orderBy;
 
   public function __construct()
   {
@@ -49,23 +49,15 @@ class JobController extends Controller
     $this->render("layout/footer");
   }
 
-  // public function paginate()
-  // {
-  //   // session_start();
-  //   // if (empty($_SESSION)) header("Location: /signin");
-  //   $currentPage = isset($_GET["page"]) ? $_GET["page"] : 1;
-  //   $this->page = ($currentPage - 1) * $this->elements;
-  //   echo json_encode($currentPage);
-  // }
-
   public function info()
   {
     session_start();
     if (empty($_SESSION)) header("Location: /signin");
-    if (isset($_GET["page"])) {
+    if (isset($_GET["page"]) && isset($_GET["order"])) {
       $this->page = ($_GET["page"] - 1) * $this->elements;
+      $this->orderBy = $_GET["order"];
     }
-    $jobs = $this->job->selectJoinPlatforms(true, $this->page, $this->elements);
+    $jobs = $this->job->selectJoinPlatforms(true, $this->page, $this->elements, $this->orderBy);
     $this->render("layout/header");
     $this->render("Job/info", ["jobs" => $jobs]);
     $this->render("layout/footer");

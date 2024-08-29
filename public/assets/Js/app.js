@@ -2,6 +2,7 @@ import logout from "./logout.js";
 import changeTheme from "./theme.js";
 import { insertData } from "./data.js";
 import paginator from "./paginator.js";
+import { orderData, cleanClass } from "./orderData.js";
 
 // Logout
 const logoutBtn = document.getElementById('logout');
@@ -56,12 +57,14 @@ if (createJobForm) {
 // Paginator
 const paginatorbtns = document.querySelectorAll('.paginator');
 let currentPage = 1;
+let order = 'day_applied DESC';
 let lastPage = false;
 let firstPage = true;
 const previousPage = document.getElementById('previous-page');
 if (firstPage && previousPage) previousPage.disabled = firstPage;
 const nextPage = document.getElementById('next-page');
-paginator(currentPage)
+
+
 paginatorbtns.forEach(btn => {
   btn.addEventListener('click', () => {
     if (btn.id === 'previous-page') {
@@ -71,10 +74,22 @@ paginatorbtns.forEach(btn => {
     } else {
       currentPage = btn.id
     }
-    paginator(currentPage);
+    paginator(currentPage, order);
     firstPage = currentPage == 1;
     lastPage = currentPage == paginatorbtns.length - 2
     if (previousPage) previousPage.disabled = firstPage;
     if (nextPage) nextPage.disabled = lastPage;
   })
-})
+});
+// Order Data
+const ths = document.querySelectorAll('.th-job');
+ths.forEach(th => {
+  th.addEventListener('click', () => {
+    cleanClass(ths, th.id)
+    order = `${th.id} ${orderData(th.lastChild)}`;
+    paginator(currentPage, order);
+    console.log(order)
+  })
+});
+paginator(currentPage, order)
+

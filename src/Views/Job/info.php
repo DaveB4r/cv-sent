@@ -1,25 +1,15 @@
 <?php if ($jobs->rowCount() > 0) : ?>
-  <?php $stage = ["Rejected","Application sent", "First interview", "Second interview", "RH interview", "Technical interview", "Final interview", "Job obtained"] ?>
+  <?php $stage = ["Rejected", "Application sent", "First interview", "Second interview", "RH interview", "Technical interview", "Final interview", "Job obtained"] ?>
   <table class="table table-stripped table-bordered">
-    <thead>
-      <tr>
-        <th>Company</th>
-        <th>Platform</th>
-        <th>Stage</th>
-        <th>Day</th>
-        <th>Stack</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
     <tbody>
       <?php foreach ($jobs->fetchAll(PDO::FETCH_ASSOC) as $job): ?>
         <tr>
-          <td><?= $job['company'] ?></td>
-          <td><?= $job['platform_name'] ?></td>
-          <td><?= $stage[$job['stage']] ?></td>
-          <td><?= $job['day_applied'] ?></td>
-          <td><?= $job['stacks'] ?></td>
-          <td>delete|edit</td>
+          <td class="td-job"><?= $job['company'] ?></td>
+          <td class="td-job"><?= $job['platform_name'] ?></td>
+          <td class="td-job"><?= $stage[$job['stage']] ?></td>
+          <td class="td-job"><?= $job['day_applied'] ?></td>
+          <td class="td-job"><?= $job['stacks'] ?></td>
+          <td class="td-job">delete|edit</td>
         </tr>
       <?php endforeach ?>
     </tbody>
